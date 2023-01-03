@@ -5,7 +5,7 @@ var bodyparser = require(`body-parser`)
 var path = require('path')
 var app = express();
 var uploads = path.join(__dirname, 'uploads');
-const host = "localhost";
+const host = "http://localhost:3000";
 app.use(bodyparser.json())
 app.set('view engine', 'ejs');
 
@@ -32,7 +32,7 @@ app.post('/upload', function (req, res, next) {
             res.json("pls upload jpg file")
         }
         else {
-            res.json(`"${host}/uploads/${req.file.filename}"`);
+            res.json(`"${host}/${req.file.filename}"`);
         }
     });
 
