@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Node.js Simple File Upload</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    />
+    <style>
+      #uploadForm {
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+      input.btn {
+        flex: 0.8;
+      }
+      button.btn {
+        flex: 0.15;
+      }
+      input.input-text {
+        height: 200px;
+        width: 100%;
+      }
+      input.text-alt {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Nhập thông tin</h1>
+      <label for="text-alt">Tên truyện</label>
+      <input type="alt" class="input-alt" name="text-alt" />
+      <form
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+        id="form"
+      >
+        <input
+          type="file"
+          name="files"
+          class="btn btn-primary"
+          id="file"
+          multiple
+        />
+        <button
+          class="btn btn-primary"
+          type="submit"
+          style="border-radius: 4px"
+        >
+          Upload
+        </button>
+        <br />
+      </form>
+      <label for="text">HTML</label>
+      <input type="text" class="input-text" name="text" id="html-text" />
+    </div>
+    <script type="text/javascript">
+      document.getElementById('file').value = '';
+      let form = document.getElementById('form');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let HTML = document.getElementById('html-text');
+        let text = document.querySelector('.input-alt').value;
+        let photo = document.getElementById('file').files; // file from input
+        // actual logic, e.g. validate the form
+        if (photo.length === 0) {
+          alert('Chưa chọn ảnh');
+          return;
+        }
+        if (text.length === 0) {
+          alert('Chưa nhập tên truyện');
+          return;
+        }
+        const formData = new FormData();
+        formData.append('file', photo[0]);
+        // post form data
+        fetch('http://localhost:3000/upload', {
+          method: 'POST',
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            HTMLcontent = `<img src=${result} alt="${text}">`;
+            HTML.value = HTMLcontent;
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+    </script>
+  </body>
+</html>
