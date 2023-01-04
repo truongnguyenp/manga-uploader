@@ -6,7 +6,6 @@ const path = require('path')
 const app = express();
 const router = require('./router/index')
 const uploads = path.join(__dirname, 'uploads');
-const host = "http://localhost:3000";
 app.use(bodyparser.json())
 app.set('view engine', 'ejs');
 

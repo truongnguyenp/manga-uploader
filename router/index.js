@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const multer = require('multer');
+const path = require('path')
+const host = "http://localhost:3000";
+
 router.get('/', (req, res) => {
     res.render('index');
 });
