@@ -43,7 +43,7 @@
           type="file"
           name="files"
           class="btn btn-primary"
-          id="file"
+          id="files"
           multiple
         />
         <button
@@ -59,16 +59,17 @@
       <input type="text" class="input-text" name="text" id="html-text" />
     </div>
     <script type="text/javascript">
-      document.getElementById('file').value = '';
+      document.getElementById('files').value = '';
       let form = document.getElementById('form');
 
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         let HTML = document.getElementById('html-text');
         let text = document.querySelector('.input-alt').value;
-        let photo = document.getElementById('file').files; // file from input
+        var totalfiles = document.getElementById('files').files.length;
+
         // actual logic, e.g. validate the form
-        if (photo.length === 0) {
+        if (totalfiles.length === 0) {
           alert('Chưa chọn ảnh');
           return;
         }
@@ -76,8 +77,16 @@
           alert('Chưa nhập tên truyện');
           return;
         }
+
         const formData = new FormData();
-        formData.append('file', photo[0]);
+        let images = [];
+        for (var index = 0; index < totalfiles; index++) {
+          formData.append(
+            'files',
+            document.getElementById('files').files[index]
+          );
+        }
+
         // post form data
         fetch('http://localhost:3000/upload', {
           method: 'POST',
@@ -85,12 +94,22 @@
         })
           .then((response) => response.json())
           .then((result) => {
-            HTMLcontent = `<img src=${result} alt="${text}">`;
+            let HTMLcontent = '';
+            if (result === 'err') {
+              HTML.value = 'CÓ LỖI XẢY RA';
+              return;
+            }
+            for (item of result) {
+              let imageHTML = `<img src="${item}" alt="${text}"/>`;
+              HTMLcontent += imageHTML;
+            }
             HTML.value = HTMLcontent;
           })
           .catch((error) => {
-            console.error('Error:', error);
+            return;
           });
+        document.getElementById('files').value = '';
+        document.querySelector('.input-alt').value = '';
       });
     </script>
   </body>
