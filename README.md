@@ -9,8 +9,8 @@
 
 ### Run
 ```
-> git clone https://github.com/Majidkn/nodejs-simple-file-upload.git
-> cd nodejs-simple-file-upload
+> git clone https://github.com/Majidkn/nodejs-simple-file-upload.git](https://github.com/truongnguyenp/upload.git
+> cd upload
 > npm install
 > npm start
 ```
