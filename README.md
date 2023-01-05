@@ -9,7 +9,7 @@
 
 ### Run
 ```
-> git clone https://github.com/Majidkn/nodejs-simple-file-upload.git](https://github.com/truongnguyenp/upload.git
+> git clone https://github.com/truongnguyenp/upload.git
 > cd upload
 > npm install
 > npm start
