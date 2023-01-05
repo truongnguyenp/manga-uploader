@@ -3,7 +3,7 @@ const multer = require('multer');
 require('dotenv').config();
 const SharpMulter = require("sharp-multer");
 const path = require('path')
-const host = process.env.RENDER_EXTERNAL_HOSTNAME || "http://localhost:3000";
+const host = process.env.HOST || "http://localhost:3000";
 const LOGO = __dirname + "/images/logo.png";
 router.get('/', (req, res) => {
     res.render('index');
@@ -14,10 +14,9 @@ const storage = SharpMulter({
     imageOptions: {
         fileFormat: "jpg",
         quality: 80,
-        resize: { width: 500, height: 500 },
     },
     watermarkOptions: {
-        input: "./images/logo.png", // watermark image location
+        input: "./logo/logo.png", // watermark image location
         location: "top-right",
     },
 });
