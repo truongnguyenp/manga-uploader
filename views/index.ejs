@@ -106,6 +106,7 @@
             HTML.value = HTMLcontent;
           })
           .catch((error) => {
+            HTML.value = error;
             return;
           });
         document.getElementById('files').value = '';
