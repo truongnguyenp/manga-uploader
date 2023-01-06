@@ -20,7 +20,7 @@ const storage = SharpMulter({
         location: "top-right",
     },
 });
-const upload = multer({ storage }).array("files", 10);
+const upload = multer({ storage }).array("files", 30);
 router.post('/upload', function (req, res, next) {
     upload(req, res, function (err) {
         const files = req?.files

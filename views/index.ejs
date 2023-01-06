@@ -88,7 +88,8 @@
         }
 
         // post form data
-        fetch('http://localhost:3000/upload', {
+        let env_host = '<%= process.env.RENDER_EXTERNAL_HOSTNAME%>';
+        fetch(`${env_host}/upload`, {
           method: 'POST',
           body: formData,
         })
