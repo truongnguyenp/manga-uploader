@@ -20,10 +20,10 @@ const storage = SharpMulter({
         location: "top-right",
     },
 });
-const upload = multer({ storage }).array("files", 30);
+const upload = multer({ storage }).array("files", 50);
 router.post('/upload', function (req, res, next) {
     upload(req, res, function (err) {
-        const files = req?.files
+        const files = req?.files?.reverse()
         const fileNameLists = files.map((file) => {
             return `${host}/${file?.filename}`
         })

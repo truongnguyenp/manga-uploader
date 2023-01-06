@@ -19,9 +19,12 @@
       button.btn {
         flex: 0.15;
       }
-      input.input-text {
+      textarea.input-text {
         height: 200px;
         width: 100%;
+        padding: 0 45px;
+        word-wrap: break-word;
+        word-break: break-word;
       }
       input.text-alt {
         width: 100%;
@@ -56,7 +59,16 @@
         <br />
       </form>
       <label for="text">HTML</label>
-      <input type="text" class="input-text" name="text" id="html-text" />
+      <textarea
+        rows="5"
+        cols="60"
+        type="text"
+        class="input-text"
+        name="text"
+        id="html-text"
+      >
+      </textarea
+      ><br />
     </div>
     <script type="text/javascript">
       document.getElementById('files').value = '';
