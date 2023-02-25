@@ -12,5 +12,7 @@ app.set('view engine', 'ejs');
 app.use(cors());
 app.use('/', router)
 app.use(express.static(uploads))
-
-app.listen(3000);
+app.use(cors({
+    origin: ['https://mangazodiac.com']
+}));
+app.listen(443);

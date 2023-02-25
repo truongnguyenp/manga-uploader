@@ -14,6 +14,7 @@ const storage = SharpMulter({
     imageOptions: {
         fileFormat: "jpg",
         quality: 80,
+        useTimestamp: true,
     },
     watermarkOptions: {
         input: "./logo/logo.png", // watermark image location
@@ -23,7 +24,7 @@ const storage = SharpMulter({
 const upload = multer({ storage }).array("files", 50);
 router.post('/upload', function (req, res, next) {
     upload(req, res, function (err) {
-        const files = req?.files?.reverse()
+        const files = req?.files;
         const fileNameLists = files.map((file) => {
             return `${host}/${file?.filename}`
         })

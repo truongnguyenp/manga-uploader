@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Node.js Simple File Upload</title>
+    <title>MangaZodiac Uploader V1.1</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
@@ -20,22 +20,67 @@
         flex: 0.15;
       }
       textarea.input-text {
-        height: 200px;
+        height: 400px;
         width: 100%;
-        padding: 0 45px;
         word-wrap: break-word;
         word-break: break-word;
       }
       input.text-alt {
         width: 100%;
       }
+	.bg-light {
+	  background-color: #f8f9fa;	  
+	  margin-bottom: 1.5rem;
+	}
+	.h3, h3 {
+	  font-size: 1.75rem;
+	}
+	.form-group {
+	  margin-bottom: 1rem;
+	}
+	label {
+	  display: block;
+	  margin-bottom: .5rem;
+	}
+	.form-input {
+	  display: block;
+      width: 100%;
+      height: calc(2.25rem + 2px);
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
+	.input-image {
+	  color: #292b2c;
+	  background-color: transparent;
+	  border-color: #ced4da;
+	}
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>Nhập thông tin</h1>
-      <label for="text-alt">Tên truyện</label>
-      <input type="alt" class="input-alt" name="text-alt" />
+    <nav class="navbar navbar-toggleable-md navbar-light bg-light">
+	<div class="container">
+	  <a class="navbar-brand" href="./00e4e5bff7ee061d18da39ca57536c8a.php">Manga Uploader</a>
+	    <ul class="navbar-nav navbar-right">
+		<li class="nav-item"> <a class="nav-link" href="https://mangazodiac.com/" target="_blank" rel="noopener">MangaZodiac</a> </li>
+	    </ul>
+	</div>
+    </nav>
+    <div class="container" style="height: 100vh">
+      <h3>Nhập thông tin</h3>
+	  <div class="form-group">
+		<label for="text-alt">Tên truyện</label>
+		<input type="alt" class="input-alt form-input" name="text-alt" />
+	  </div>
+	  <div class="form-group">
+	  <label>Chọn hình ảnh</label>
       <form
         action="/upload"
         method="post"
@@ -45,25 +90,26 @@
         <input
           type="file"
           name="files"
-          class="btn btn-primary"
+          class="btn btn-primary input-image"
           id="files"
           multiple
         />
         <button
           class="btn btn-primary"
           type="submit"
-          style="border-radius: 4px"
+          style="border-radius: 4px; padding: 10px;"
         >
           Upload
         </button>
         <br />
       </form>
+	  </div>
       <label for="text">HTML</label>
       <textarea
         rows="5"
         cols="60"
         type="text"
-        class="input-text"
+        class="input-text form-input"
         name="text"
         id="html-text"
       >
@@ -101,7 +147,7 @@
 
         // post form data
         let env_host = '<%= process.env.RENDER_EXTERNAL_HOSTNAME%>';
-        fetch(`${env_host}/upload`, {
+        fetch(`/upload`, {
           method: 'POST',
           body: formData,
         })
@@ -109,7 +155,7 @@
           .then((result) => {
             let HTMLcontent = '';
             if (result === 'err') {
-              HTML.value = 'CÓ LỖI XẢY RA';
+              HTML.value = 'LỖI VUI LÒNG THỬ LẠI';
               return;
             }
             for (item of result) {
@@ -127,4 +173,13 @@
       });
     </script>
   </body>
+  <footer>
+    <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #f8f9fa;">
+	<div class="container">
+	    <ul class="navbar-nav navbar-right">
+		<li class="nav-item"> <a class="nav-link" href="https://mangazodiac.com/" target="_blank" rel="noopener">© 2023 Manga Uploader - MangaZodiac</a> </li>
+	    </ul>
+	</div>
+    </nav>
+  </footer>
 </html>
